@@ -17,15 +17,20 @@ const testEpisodeWithoutImage = {
 }
 
 test("renders without error", () => {
-
+    render(<Episode episode={testEpisode} />)
 });
 
 test("renders the summury test passed as prop", ()=>{
-    
+    render(<Episode episode={testEpisode}/>);
+    const summury = screen.getByText(/a really exceptional film/i);
+    expect(summury).toBeInTheDocument();
+    expect(summury).toBeTruthy();
 });
 
 test("renders default image when image is not defined", ()=>{
-    
+    render(<Episode episode={testEpisodeWithoutImage}/>);
+    const img = screen.getByAltText('./stranger_things.png');
+    expect(img).toBeInTheDocument();
 })
 
 //Tasks
